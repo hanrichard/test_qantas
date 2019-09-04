@@ -1,19 +1,27 @@
-import React from 'react';
-
-const AirportDetails = ({airport}) => {
-  return (
-    <div>
-    <div> {airport.airportName} </div>
-    <div> {airport.location.longitude} </div>
-    <div> {airport.location.latitude} </div>
-    <div> {airport.city.timeZoneName} </div>
-    <div> {airport.country.countryName} </div>
-
-    
-    <hr/>
-    </div>
-  )
-};
+import React, {Component} from 'react';
+import {graphql} from 'react-apollo';
+import query from '../queries/query'
 
 
-export default AirportDetails;
+class AirportDetails extends Component {
+  render() {
+    const airports = this.props.data.loading ? 
+      <div>loading</div> 
+      : 
+      this.props.data.airports.map( airport => {
+        return (<div 
+                  to={`/airport/${airport.airportCode}`}
+                  key={airport.airportCode}> {airport.airportName} </div>)
+    })
+
+    return (
+      <div>airports { airports }</div>
+    )
+  }
+}
+
+
+export default graphql(query)(AirportDetails);
+
+
+

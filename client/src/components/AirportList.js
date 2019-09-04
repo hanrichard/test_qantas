@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-apollo';
-import AirportDetails from "./AirportDetails"
 import query from '../queries/query'
+import { Link } from 'react-router-dom';
+
 
 class AirportList extends Component {
   render() {
@@ -9,10 +10,9 @@ class AirportList extends Component {
       <div>loading</div> 
       : 
       this.props.data.airports.map( airport => {
-        return (<AirportDetails 
-                  key={airport.airportCode}
-                  airport = {airport}
-                  />)
+        return (<Link 
+                  to={`/airport/${airport.airportCode}`}
+                  key={airport.airportCode}> {airport.airportName} </Link>)
     })
 
     return (

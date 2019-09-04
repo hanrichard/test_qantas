@@ -3,6 +3,7 @@ import './App.css';
 import { ApolloProvider } from 'react-apollo';
 import AirportList from "./AirportList"
 import AirportDetails from "./AirportDetails"
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import { Router, Route, hashHistory, IndexRoute} from 'react-router'
 
 
@@ -29,7 +30,15 @@ const App = () => {
           <Route path='airports/:id' component={AirportDetails} />
         </Route>
       </Router> */}
-      <AirportList />
+      {/* <AirportList /> */}
+ 
+      <BrowserRouter>
+          <Switch>
+            <Route path='/airport/:id' component={AirportDetails} />
+            <Route exact path='/' component={AirportList} />
+          </Switch>
+      </BrowserRouter>
+    
     </ApolloProvider>
   )
 };
