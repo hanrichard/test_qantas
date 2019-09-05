@@ -4,17 +4,21 @@ import query from '../queries/query-airports'
 import { Link } from 'react-router-dom';
 
 const AirportList = props => {
-  const airports = props.data.loading ? 
+  const { error, airports, loading } = props.data;
+  if(error) {
+    return <div>{error.message}</div>
+  }
+  const airportsList = loading ? 
     <div>loading</div> 
     : 
-    props.data.airports.map( airport => {
+    airports.map( airport => {
       return (<Link 
                 to={`/airport/${airport.airportCode}`}
                 key={airport.airportCode}> {airport.airportName}</Link>)
   })
 
   return (
-    <div>airports { airports }</div>
+    <div>airports { airportsList }</div>
   )
 }
 
