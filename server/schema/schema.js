@@ -8,7 +8,6 @@ const {
   GraphQLList
 } = require('graphql');
 
-
 const AirportType = new GraphQLObjectType({
   name: 'airport',
   fields: () => ({
@@ -69,9 +68,9 @@ const RootQuery = new GraphQLObjectType({
               airport => {
                 return airport.airportCode === args.airportCode
               }
-            )
+            )[0]
           }
-        );
+        )
       }
     }
   }

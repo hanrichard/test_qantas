@@ -16,29 +16,32 @@ const link = new HttpLink({
   uri: 'http://localhost:4000/graphql'
 })
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'cache-and-network',
+    errorPolicy: 'all',
+  },
+  query: {
+    fetchPolicy: 'cache-and-network',
+    errorPolicy: 'all',
+  }
+}
+
 const client = new ApolloClient({
   cache,
-  link
+  link,
+  defaultOptions: defaultOptions,
 })
 
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      {/* <Router history={hashHistory}> 
-        <Route path='/' component={AirportList}>
-          <IndexRoute component={AirportList} />
-          <Route path='airports/:id' component={AirportDetails} />
-        </Route>
-      </Router> */}
-      {/* <AirportList /> */}
- 
       <BrowserRouter>
           <Switch>
             <Route path='/airport/:id' component={AirportDetails} />
             <Route exact path='/' component={AirportList} />
           </Switch>
       </BrowserRouter>
-    
     </ApolloProvider>
   )
 };
