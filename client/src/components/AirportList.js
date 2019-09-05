@@ -15,6 +15,8 @@ class AirportList extends Component {
                   key={airport.airportCode}> {airport.airportName} </Link>)
     })
 
+    console.log(this.props)
+
     return (
       <div>airports { airports }</div>
     )
