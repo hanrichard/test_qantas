@@ -4,8 +4,10 @@ import query from '../queries/query-airport'
 import { Link } from 'react-router-dom';
 
 const AirportDetails = props => {
-  const { airport } = props.data;
-
+  const { airport, error } = props.data;
+  if(error) {
+    return <div>{error.message}</div>
+  }
   if(!airport) {
       return <div>loading</div>
   }
