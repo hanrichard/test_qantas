@@ -61,18 +61,18 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return axios
-          // .get('https://api.qantas.com/flight/refData/airport')
-          // .then(res => res.data);
           .get('https://api.qantas.com/flight/refData/airport')
-          .then(
-            res => {
-              return res.data.filter(
-              airport => {
-                return airport.airportCode === args.airportCode
-              }
-            )[0]
-          }
-          )
+          .then(res => res.data);
+          // .get('https://api.qantas.com/flight/refData/airport')
+          // .then(
+          //   res => {
+          //     return res.data.filter(
+          //     airport => {
+          //       return airport.airportCode === args.airportCode
+          //     }
+          //   )[0]
+          // }
+        
       }
     }
   }
