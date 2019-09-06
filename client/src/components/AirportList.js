@@ -16,10 +16,11 @@ const AirportList = props => {
     return <div>{error.message}</div>
   }
   
-  const airportsList = loading ? 
-    <Loader />
-    : 
-    airports.map( airport => {
+  if(loading) {
+    return <Loader />
+  }
+
+  const airportsList = airports.map( airport => {
       return (
           <Wrapper key={airport.airportCode} >
             <Card>

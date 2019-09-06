@@ -11,14 +11,14 @@ import componentStyle from './AirportDetailsStyle';
 import Button from '@material-ui/core/Button';
 
 const AirportDetails = props => {
-  const { airports, error } = props.data;
+  const { airports, error, loading } = props.data;
   const Wrapper = styled.div`${componentStyle}`;
  
   if(error) {
     return <div>{error.message}</div>
   }
 
-  if(!airports) {
+  if(loading) {
       return  <Loader />
   }
 
