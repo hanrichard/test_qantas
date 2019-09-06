@@ -3,13 +3,18 @@ import './App.css';
 import { ApolloProvider } from 'react-apollo';
 import AirportList from "./AirportList"
 import AirportDetails from "./AirportDetails"
+import Header from "./Header"
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import { Router, Route, hashHistory, IndexRoute} from 'react-router'
+import Container from '@material-ui/core/Container';
+import styled from 'styled-components'
+import componentStyle from './AppStyle';
 
 
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+
+const Wrapper = styled.div`${componentStyle}`;
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -18,11 +23,11 @@ const link = new HttpLink({
 
 const defaultOptions = {
   watchQuery: {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'cache',
     errorPolicy: 'all',
   },
   query: {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'cache',
     errorPolicy: 'all',
   }
 }
@@ -30,18 +35,23 @@ const defaultOptions = {
 const client = new ApolloClient({
   cache,
   link,
-  // defaultOptions: defaultOptions,
+  defaultOptions: defaultOptions,
 })
 
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-          <Switch>
-            <Route path='/airport/:id' component={AirportDetails} />
-            <Route exact path='/' component={AirportList} />
-          </Switch>
-      </BrowserRouter>
+      <Header />
+      <Wrapper>
+        <Container maxWidth="sm">
+          <BrowserRouter>
+              <Switch>
+                <Route path='/airport/:id' component={AirportDetails} />
+                <Route exact path='/' component={AirportList} />
+              </Switch>
+          </BrowserRouter>
+        </Container>
+      </Wrapper>
     </ApolloProvider>
   )
 };

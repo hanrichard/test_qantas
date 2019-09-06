@@ -3,7 +3,8 @@ import gql from 'graphql-tag'
 export default gql`
   {
     airports {
-        airportCode
+      airportCode
+      airportName
       location {
         latitude
         longitude

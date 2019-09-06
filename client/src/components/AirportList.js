@@ -2,25 +2,40 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import query from '../queries/query-airports'
 import { Link } from 'react-router-dom';
+import Loader from "./Loader"
+import Card from '@material-ui/core/Card';
+import styled from 'styled-components'
+import componentStyle from './AirportListStyle';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const AirportList = props => {
   const { error, airports, loading } = props.data;
+  const Wrapper = styled.div`${componentStyle}`;
 
   if(error) {
     return <div>{error.message}</div>
   }
   
   const airportsList = loading ? 
-    <div>loading</div> 
+    <Loader />
     : 
     airports.map( airport => {
-      return (<Link 
-                to={`/airport/${airport.airportCode}`}
-                key={airport.airportCode}> {airport.airportName} - {airport.country.countryName}</Link>)
+      return (
+          <Wrapper key={airport.airportCode} >
+            <Card>
+                <Link to={`/airport/${airport.airportCode}`} className="AirportList__link"> 
+                  {airport.airportName} - {airport.country.countryName}
+                  <ArrowForwardIosIcon />
+                </Link>
+            </Card>
+          </Wrapper>
+      )
   })
 
   return (
-    <div>airports { airportsList }</div>
+    <div> 
+      { airportsList }
+    </div>
   )
 }
 
