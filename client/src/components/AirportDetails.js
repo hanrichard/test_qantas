@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const AirportDetails = props => {
   const { airport, error } = props.data;
+  console.log(props)
   if(error) {
     return <div>{error.message}</div>
   }
