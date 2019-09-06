@@ -4,14 +4,21 @@ import query from '../queries/query-airport'
 import { Link } from 'react-router-dom';
 
 const AirportDetails = props => {
-  const { airport, error } = props.data;
-  console.log(props)
+  const { airports, error } = props.data;
+ 
   if(error) {
     return <div>{error.message}</div>
   }
-  if(!airport) {
+
+  if(!airports) {
       return <div>loading</div>
   }
+
+  const airport = airports && airports.filter(airport => {
+    return airport.airportCode === props.match.params.id
+  })[0];
+
+  console.log(airport)
         
   return (
     <div>
@@ -25,8 +32,4 @@ const AirportDetails = props => {
   )
 }
 
-export default graphql(query, {
-  options: (props)=> {
-      return {variables: {id: props.match.params.id}}
-  }
-})(AirportDetails)
+export default graphql(query)(AirportDetails)

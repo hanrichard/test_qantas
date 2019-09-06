@@ -7,13 +7,6 @@ export default gql`
         country {
             countryName
         }
-        city {
-            timeZoneName
-        }
-        location {
-            longitude
-            latitude
-        }
         airportCode
     }
   }

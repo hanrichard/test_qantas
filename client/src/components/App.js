@@ -30,7 +30,7 @@ const defaultOptions = {
 const client = new ApolloClient({
   cache,
   link,
-  defaultOptions: defaultOptions,
+  // defaultOptions: defaultOptions,
 })
 
 const App = () => {

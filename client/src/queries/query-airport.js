@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  query airport ($id: String!) {
-    airport(airportCode:$id) {
+  {
+    airports {
       airportCode
       location {
         latitude
