@@ -62,9 +62,9 @@ const AirportDetails = (props) => {
          TimeZone
         </Typography>
 
-        <Typography variant="body1" >
-          {airport.city.timeZoneName}
-        </Typography>
+        <ul>
+          <li><Typography variant="body1" >{airport.city.timeZoneName}</Typography></li>
+        </ul>
       </CardContent>
     </Card>
     <Link className="airportDetail__button" to="/">
