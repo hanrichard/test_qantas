@@ -52,10 +52,10 @@ const AirportDetails = (props) => {
         </Typography>
 
         
-          <ul>
-            <li><Typography variant="body1" gutterBottom>latitude: {airport.location.latitude }   </Typography></li>
-            <li><Typography variant="body1" gutterBottom>longitude: {airport.location.longitude } </Typography></li>
-          </ul>
+        <ul>
+          <li><Typography variant="body1" gutterBottom>latitude: {airport.location.latitude }   </Typography></li>
+          <li><Typography variant="body1" gutterBottom>longitude: {airport.location.longitude } </Typography></li>
+        </ul>
       
 
         <Typography variant="h5" component="h2" gutterBottom>
