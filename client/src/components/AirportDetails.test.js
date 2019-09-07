@@ -32,10 +32,9 @@ function setup() {
 
 
 describe('AirportDetails component', () => {
-
   it('should render self and its subcomponents', () => {
     const {
-      shallowWrapper
+      shallowWrapper,
     } = setup();
 
     expect(shallowWrapper.find(<Card />)).toHaveLength(1);
