@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import componentStyle from './AirportListStyle';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Pagination from "react-js-pagination";
+import Container from '@material-ui/core/Container';
 
 class AirportList extends Component { 
   constructor(props) {
@@ -26,19 +27,17 @@ class AirportList extends Component {
     const { error, airports, loading } = this.props.data;
     const Wrapper = styled.div`${componentStyle}`;
     const totalNumber = airports && airports.length;
-    const currentPage = this.state.activePage * 100
-    const nextPage = currentPage + 100
+    const currentPage = this.state.activePage * 50
+    const nextPage = currentPage + 50
 
     const airportsList = airports && airports.slice(currentPage, nextPage).map( airport => {
         return (
-            <Wrapper key={airport.airportCode} >
-              <Card>
-                  <Link to={`/airport/${airport.airportCode}`} className="AirportList__link"> 
-                    {airport.airportName} - {airport.country.countryName}
-                    <ArrowForwardIosIcon />
-                  </Link>
-              </Card>
-            </Wrapper>
+            <Card className="AirportList__card" key={airport.airportCode} >
+                <Link to={`/airport/${airport.airportCode}`} className="AirportList__link"> 
+                  {airport.airportName} - {airport.country.countryName}
+                  <ArrowForwardIosIcon />
+                </Link>
+            </Card>
         )
     })
 
@@ -51,16 +50,23 @@ class AirportList extends Component {
     }
 
     return (
-      <div> 
-        { airportsList }
-        <Pagination
-          activePage={this.state.activePage}
-          itemsCountPerPage={100}
-          totalItemsCount={totalNumber - 100}
-          pageRangeDisplayed={5}
-          onChange={this.handlePageChange}
-        />
-      </div>
+      <Wrapper> 
+        <div className="AirportList__list">
+          { airportsList }
+        </div>
+        
+        <div className="AirportList__pagination">
+          <Container maxWidth="sm">
+            <Pagination
+              activePage={this.state.activePage}
+              itemsCountPerPage={50}
+              totalItemsCount={totalNumber - 50}
+              pageRangeDisplayed={5}
+              onChange={this.handlePageChange}
+            />
+          </Container>
+        </div>
+      </Wrapper>
     )
   }
 }
