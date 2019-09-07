@@ -1,32 +1,27 @@
 import React, {useState} from 'react';
 import {graphql} from 'react-apollo';
 import query from '../queries/query-airports'
-import { Link } from 'react-router-dom';
 import Loader from "./Loader"
-import Card from '@material-ui/core/Card';
+import AirportItem from "./AirportItem"
 import styled from 'styled-components'
-import componentStyle from './AirportListStyle';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import componentStyle from './HomeStyle';
 import Pagination from "react-js-pagination";
 import Container from '@material-ui/core/Container';
 
-const AirportList = (props) => { 
+const Home = (props) => { 
     const [activePage, setActivePage] = useState(1);
     const { error, airports, loading } = props.data;
-    console.log(airports)
     const Wrapper = styled.div`${componentStyle}`;
-    const totalNumber = airports && airports.length;
-    const currentPage = activePage * 50
-    const nextPage = currentPage + 50
 
-    const airportsList = airports && airports.slice(currentPage, nextPage).map( airport => {
+    const totalNumber = airports && airports.length;
+    const pageShownNum = 50
+    const pageRangeDisplayed = 5
+    const currentPages = activePage * pageShownNum
+    const nextPages = currentPages + pageShownNum
+
+    const airportsList = airports && airports.slice(currentPages, nextPages).map( airport => {
         return (
-            <Card className="AirportList__card" key={airport.airportCode} >
-                <Link to={`/airport/${airport.airportCode}`} className="AirportList__link"> 
-                  {airport.airportName} - {airport.country.countryName}
-                  <ArrowForwardIosIcon />
-                </Link>
-            </Card>
+          <AirportItem key={airport.airportCode} airport={airport}/>
         )
     })
 
@@ -48,16 +43,15 @@ const AirportList = (props) => {
           <Container maxWidth="sm">
             <Pagination
               activePage={activePage}
-              itemsCountPerPage={50}
-              totalItemsCount={totalNumber - 50}
-              pageRangeDisplayed={5}
+              itemsCountPerPage={pageShownNum}
+              totalItemsCount={totalNumber - pageShownNum}
+              pageRangeDisplayed={pageRangeDisplayed}
               onChange={(activePage)=>setActivePage(activePage)}
             />
           </Container>
         </div>
       </Wrapper>
     )
-  
 }
 
-export default graphql(query)(AirportList);
+export default graphql(query)(Home);

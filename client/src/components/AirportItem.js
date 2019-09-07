@@ -1,42 +1,22 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import styled from 'styled-components'
+import componentStyle from './AirportItemStyle';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
-// const AirportItem = ({airport}) => {
-//   return (
-//     <Link to={`/airport/${airport.airportCode}`}>
-//       <div> {airport.airportName} </div>
-//       <div> {airport.location.longitude} </div>
-//       <div> {airport.location.latitude} </div>
-//       <div> {airport.city.timeZoneName} </div>
-//       <div> {airport.country.countryName} </div>
-//     </Link>
-//   )
-// };
+const AirportItem = props => { 
+    const Wrapper = styled.div`${componentStyle}`;
+    return (
+        <Wrapper>
+            <Card className="AirportList__card" >
+                <Link to={`/airport/${props.airport.airportCode}`} className="AirportList__link"> 
+                {props.airport.airportName} - {props.airport.country.countryName}
+                <ArrowForwardIosIcon />
+                </Link>
+            </Card>
+        </Wrapper>
+    )
+}
 
-
-// export default AirportItem;
-
-// import React, {Component} from 'react';
-// import {graphql} from 'react-apollo';
-// import query from '../queries/query'
-
-
-// class AirportItem extends Component {
-//   render() {
-//     const airports = this.props.data.loading ? 
-//       <div>loading</div> 
-//       : 
-//       this.props.data.airports.map( airport => {
-//         return (<Link 
-//                   to={`/airport/${airport.airportCode}`}
-//                   key={airport.airportCode}> {airport.airportName} </Link>)
-//     })
-
-//     return (
-//       <div>airports { airports }</div>
-//     )
-//   }
-// }
-
-
-// export default graphql(query)(AirportItem);
+export default AirportItem;

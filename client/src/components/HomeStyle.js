@@ -5,19 +5,6 @@ const componentStyle = css`
     margin-bottom: 80px;
   }
 
-  .AirportList__link {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px; 
-    box-sizing: border-box;
-  }
-
-  .AirportList__card {
-    margin-bottom: 20px;
-  }
-
   .AirportList__pagination {
     position: fixed;
     bottom: 0;

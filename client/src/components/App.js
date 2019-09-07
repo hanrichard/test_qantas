@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { ApolloProvider } from 'react-apollo';
-import AirportList from "./AirportList"
+import Home from "./Home"
 import AirportDetails from "./AirportDetails"
 import Header from "./Header"
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -47,7 +47,7 @@ const App = () => {
           <BrowserRouter>
               <Switch>
                 <Route path='/airport/:id' component={AirportDetails} />
-                <Route exact path='/' component={AirportList} />
+                <Route exact path='/' component={Home} />
               </Switch>
           </BrowserRouter>
         </Container>
