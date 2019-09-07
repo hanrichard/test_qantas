@@ -29,7 +29,7 @@ export const GET_AIRPORT_QUERY = gql`
 `;
 
 const AirportDetails = (props) => {
-  const { loading, error, data: {airports} } = useQuery(
+  const { loading, error, data } = useQuery(
     GET_AIRPORT_QUERY
   );
 
@@ -37,7 +37,7 @@ const AirportDetails = (props) => {
 
   if (error) return <div>{error.message}</div>;
     
-  const airport = airports && airports.filter(airport => {
+  const airport = data.airports && data.airports.filter(airport => {
     return airport.airportCode === props.match.params.id
   })[0];
 

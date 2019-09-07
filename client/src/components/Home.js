@@ -22,28 +22,27 @@ export const GET_AIRPORTS_QUERY = gql`
 `;
 
 const Home = () => {
-  const { loading, error, data: {airports} } = useQuery(
+  const { loading, error, data } = useQuery(
     GET_AIRPORTS_QUERY
   );
 
   const [activePage, setActivePage] = useState(1);
 
+  if (loading) return  <Loader />;
+  if (error) return <div>{error.message}</div>;
+
   const Wrapper = styled.div`${componentStyle}`;
-  const totalNumber = airports && airports.length;
+  const totalNumber = data.airports && data.airports.length;
   const pageShownNum = 50
   const pageRangeDisplayed = 5
   const currentPages = activePage * pageShownNum
   const nextPages = currentPages + pageShownNum
 
-  const airportsList = airports && airports.slice(currentPages, nextPages).map( airport => {
+  const airportsList = data.airports && data.airports.slice(currentPages, nextPages).map( airport => {
       return (
         <AirportItem key={airport.airportCode} airport={airport}/>
       )
   })
-    
-  if (loading) return  <Loader />;
-
-  if (error) return <div>{error.message}</div>;
     
   return (
     <Wrapper> 
