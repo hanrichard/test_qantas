@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 const componentStyle = css`
   .AirportList__list {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
   }
 
   .AirportList__link {
@@ -24,12 +24,14 @@ const componentStyle = css`
     left: 0;
     right: 0;
     text-align: center;
+    padding-bottom: 20px;
 
     .pagination {
       display: inline-block;
       padding-left: 0;
-      margin: 10px 0;
       border-radius: 4px;
+      box-shadow: 1px 1px 10px 3px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+      margin: 0;
 
       li {
         display: inline;

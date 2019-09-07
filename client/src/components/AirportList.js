@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {graphql} from 'react-apollo';
 import query from '../queries/query-airports'
 import { Link } from 'react-router-dom';
@@ -10,24 +10,13 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Pagination from "react-js-pagination";
 import Container from '@material-ui/core/Container';
 
-class AirportList extends Component { 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activePage: 1
-    };
-    this.handlePageChange = this.handlePageChange.bind(this);
-  }
-
-  handlePageChange(pageNumber) {
-    this.setState({activePage: pageNumber});
-  }
-  
-  render(){
-    const { error, airports, loading } = this.props.data;
+const AirportList = (props) => { 
+    const [activePage, setActivePage] = useState(1);
+    const { error, airports, loading } = props.data;
+    console.log(airports)
     const Wrapper = styled.div`${componentStyle}`;
     const totalNumber = airports && airports.length;
-    const currentPage = this.state.activePage * 50
+    const currentPage = activePage * 50
     const nextPage = currentPage + 50
 
     const airportsList = airports && airports.slice(currentPage, nextPage).map( airport => {
@@ -58,17 +47,17 @@ class AirportList extends Component {
         <div className="AirportList__pagination">
           <Container maxWidth="sm">
             <Pagination
-              activePage={this.state.activePage}
+              activePage={activePage}
               itemsCountPerPage={50}
               totalItemsCount={totalNumber - 50}
               pageRangeDisplayed={5}
-              onChange={this.handlePageChange}
+              onChange={(activePage)=>setActivePage(activePage)}
             />
           </Container>
         </div>
       </Wrapper>
     )
-  }
+  
 }
 
 export default graphql(query)(AirportList);
