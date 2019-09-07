@@ -14,13 +14,9 @@ const AirportDetails = props => {
   const { airports, error, loading } = props.data;
   const Wrapper = styled.div`${componentStyle}`;
  
-  if(error) {
-    return <div>{error.message}</div>
-  }
+  if(error) return <div>{error.message}</div>
 
-  if(loading) {
-      return  <Loader />
-  }
+  if(loading) return  <Loader />
 
   const airport = airports && airports.filter(airport => {
     return airport.airportCode === props.match.params.id

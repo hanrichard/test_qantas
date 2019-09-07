@@ -25,13 +25,9 @@ const Home = (props) => {
         )
     })
 
-    if(error) {
-      return <div>{error.message}</div>
-    }
-    
-    if(loading) {
-      return <Loader />
-    }
+    if(error) return <div>{error.message}</div>
+
+    if(loading) return  <Loader />
 
     return (
       <Wrapper> 
