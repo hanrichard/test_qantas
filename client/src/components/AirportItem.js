@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import componentStyle from './AirportItemStyle';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import PropTypes from 'prop-types'; 
 
+const Wrapper = styled.div`${componentStyle}`;
 const AirportItem = props => { 
-    const Wrapper = styled.div`${componentStyle}`;
     return (
         <Wrapper>
             <Card className="AirportList__card" >
@@ -18,7 +18,7 @@ const AirportItem = props => {
             </Card>
         </Wrapper>
     )
-}
+};
 
 AirportItem.propTypes = {
     airport: PropTypes.shape({

@@ -25,7 +25,7 @@ const CountryType = new GraphQLObjectType({
         countryName: {type: GraphQLString},
         countryCode: {type: GraphQLString},
     }
-})
+});
 
 const LocationType = new GraphQLObjectType({
     name: 'location',
@@ -33,14 +33,14 @@ const LocationType = new GraphQLObjectType({
         longitude: {type: GraphQLString},
         latitude: {type: GraphQLString},
     }
-})
+});
 
 const CityType = new GraphQLObjectType({
     name: 'city',
     fields: {
         timeZoneName: {type: GraphQLString},
     }
-})
+});
 
 // Root Query
 const RootQuery = new GraphQLObjectType({
@@ -52,27 +52,6 @@ const RootQuery = new GraphQLObjectType({
         return axios
           .get('https://api.qantas.com/flight/refData/airport')
           .then(res => res.data);
-      }
-    },
-    airport: {
-      type: AirportType,
-      args: {
-        airportCode: { type: GraphQLString }
-      },
-      resolve(parent, args) {
-        return axios
-          .get('https://api.qantas.com/flight/refData/airport')
-          .then(res => res.data);
-          // .get('https://api.qantas.com/flight/refData/airport')
-          // .then(
-          //   res => {
-          //     return res.data.filter(
-          //     airport => {
-          //       return airport.airportCode === args.airportCode
-          //     }
-          //   )[0]
-          // }
-        
       }
     }
   }

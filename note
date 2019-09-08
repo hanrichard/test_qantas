@@ -14,3 +14,39 @@ https://www.npmjs.com/package/rc-queue-anim
 
 
 https://www.npmjs.com/package/react-js-pagination
+
+
+## Review notes
+
+Code:
+
+  Server end:
+  * Unnecessary line breaks found in files. i.e server.js
+  * Semi-colon missing in files. i.e server.js
+  * Remove commented lines of code
+  * Move server.js, package.json under project root to server dir
+  * airport type/resolve not used? remove them
+
+  Client end:
+  * Some deps are devDep not deps - i.e react-test-renderer, waait
+  * .env, HeaderStyle.js not used. Remove it
+  * Indentation inconsistencies found in two queries in queries dir - consistency! either 2 or 4, but need to be the same across the whole project
+  * Semi-colon is missing in some files - make sure you are consistent on this. all-or-nothing!
+  * Remove unused css selector in AirportDetailsStyle.js
+  * Logic code in Home.js with ln between 35 and 39 needs to be externalised into utils file and get unit tested
+  * Move `const Wrapper = styled.div`${componentStyle}`;` to outside of Home component in Home.js
+  Wrapper can be seen in other places as well. Make sure they are all placed outsided of main component.
+
+Functionality:
+  * Not fully functional when offline. i.e fetch a particular item fails. I thought you would have read the item from cache as discussed?
+
+ReadMe:
+
+Confusing and sketchy. you need to be clear around how a reviewer can run your app without much guessing.
+
+* You need to have a short description on what this app is about and what it does
+* What techs you've chosen to complete this task
+* What is this project composed of - a server and a client?
+* How to run this app - how to install deps on server and client.
+* Any assumptions? Node, npm pre-installed etc.
+* Any particular versions required? i.e node version >= 10.0.0?

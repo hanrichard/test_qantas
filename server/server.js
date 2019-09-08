@@ -1,5 +1,5 @@
 const express = require('express')
-const schema = require('./server/schema/schema')
+const schema = require('./schema/schema')
 const cors = require('cors')
 
 const expressGraphQL = require('express-graphql')

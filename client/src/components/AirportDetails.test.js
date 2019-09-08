@@ -6,7 +6,6 @@ import { shallow, mount, render,configure } from 'enzyme';
 
 configure({ adapter: new Adapter() });
 
-
 function setup() {
   const props = {
     airport: {

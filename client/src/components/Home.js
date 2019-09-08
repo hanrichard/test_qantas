@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import Loader from "./Loader"
-import AirportItem from "./AirportItem"
-import styled from 'styled-components'
+import Loader from "./Loader";
+import AirportItem from "./AirportItem";
+import styled from 'styled-components';
 import componentStyle from './HomeStyle';
 import Pagination from "react-js-pagination";
 import Container from '@material-ui/core/Container';
@@ -22,6 +22,7 @@ export const GET_AIRPORTS_QUERY = gql`
 }
 `;
 
+const Wrapper = styled.div`${componentStyle}`;
 const Home = () => {
   const { loading, error, data } = useQuery(
     GET_AIRPORTS_QUERY
@@ -32,7 +33,6 @@ const Home = () => {
   if (loading) return  <Loader />;
   if (error) return <div>{error.message}</div>;
 
-  const Wrapper = styled.div`${componentStyle}`;
   const totalNumber = data.airports.length,
         pageShownNum = 25,
         pageRangeDisplayed = 5,
@@ -65,8 +65,8 @@ const Home = () => {
       </Container>
     </div>
   </Wrapper>
-  );
-}
+  )
+};
 
 Home.propTypes = {
   airport: PropTypes.shape({
@@ -78,5 +78,5 @@ Home.propTypes = {
   })
 };
 
-export default Home
+export default Home;
 

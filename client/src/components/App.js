@@ -8,8 +8,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components'
 import componentStyle from './AppStyle';
-
-
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
@@ -30,13 +28,13 @@ const defaultOptions = {
     fetchPolicy: 'cache',
     errorPolicy: 'all',
   }
-}
+};
 
 const client = new ApolloClient({
   cache,
   link,
   defaultOptions: defaultOptions,
-})
+});
 
 const App = () => {
   return (
