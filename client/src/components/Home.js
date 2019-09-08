@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types'; 
+import QueueAnim from 'rc-queue-anim';
 
 export const GET_AIRPORTS_QUERY = gql`
 {
@@ -32,13 +33,13 @@ const Home = () => {
   if (error) return <div>{error.message}</div>;
 
   const Wrapper = styled.div`${componentStyle}`;
-  const totalNumber = data.airports && data.airports.length;
-  const pageShownNum = 50
+  const totalNumber = data.airports.length;
+  const pageShownNum = 25
   const pageRangeDisplayed = 5
   const currentPages = activePage * pageShownNum
   const nextPages = currentPages + pageShownNum
 
-  const airportsList = data.airports && data.airports.slice(currentPages, nextPages).map( airport => {
+  const airportsList = data.airports.slice(currentPages, nextPages).map( airport => {
       return (
         <AirportItem key={airport.airportCode} airport={airport}/>
       )
@@ -47,7 +48,9 @@ const Home = () => {
   return (
     <Wrapper> 
     <div className="AirportList__list">
-      { airportsList }
+      <QueueAnim>
+        { airportsList }
+      </QueueAnim>
     </div>
     
     <div className="AirportList__pagination">

@@ -37,7 +37,7 @@ const AirportDetails = (props) => {
 
   if (error) return <div>{error.message}</div>;
     
-  const airport = data.airports && data.airports.filter(airport => {
+  const airport = data.airports.filter(airport => {
     return airport.airportCode === props.match.params.id
   })[0];
 
