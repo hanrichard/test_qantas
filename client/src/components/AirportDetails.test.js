@@ -21,13 +21,10 @@ const mocks = [
   },
 ];
 
-it('should render loading state initially', () => {
-  const component = TestRenderer.create(
-    <MockedProvider mocks={[]}>
-      <AirportDetails />
+it('renders without error', () => {
+  TestRenderer.create(
+    <MockedProvider>
+      <AirportDetails name="Buck" />
     </MockedProvider>,
   );
-
-  const tree = component.toJSON();
-  expect(tree.children).toContain('Loading...');
 });
