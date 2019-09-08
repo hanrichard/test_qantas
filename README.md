@@ -1,7 +1,7 @@
-HOW-TO: 
+# HOW-TO: 
 
 ## to start a server
-In the project base directory, ()you can run:
+In the project base directory, you can run:
 
 ### `npm start`
 Runs the server<br>
