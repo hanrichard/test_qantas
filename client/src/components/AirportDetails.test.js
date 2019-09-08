@@ -15,7 +15,7 @@ const mocks = [
     },
     result: {
       data: {
-        dog: { id: '1', name: 'Buck', breed: 'bulldog' },
+        airports: { id: '1', name: 'Buck', breed: 'bulldog' },
       },
     },
   },
@@ -23,8 +23,8 @@ const mocks = [
 
 it('renders without error', () => {
   TestRenderer.create(
-    <MockedProvider>
-      <AirportDetails name="Buck" />
+    <MockedProvider mocks={mocks}>
+      <AirportDetails  />
     </MockedProvider>,
   );
 });
