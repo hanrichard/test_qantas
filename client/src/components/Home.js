@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types'; 
+import { pageShownNum, pageRangeDisplayed, currentPages, nextPages, totalNumber } from "../utility/utility";
 
 export const GET_AIRPORTS_QUERY = gql`
 {
@@ -39,18 +40,12 @@ const Home = () => {
   if (loading) return  <Loader />;
   if (error) return <div>{error.message}</div>;
 
-  const totalNumber = data.airports.length,
-    pageShownNum = 25,
-    pageRangeDisplayed = 5,
-    currentPages = activePage * pageShownNum,
-    nextPages = currentPages + pageShownNum
-
-  const airportsList = data.airports.slice(currentPages, nextPages).map( airport => {
+  const airportsList = data.airports.slice(currentPages(activePage), nextPages(activePage)).map( airport => {
     return (
       <AirportItem key={airport.airportCode} airport={airport}/>
     )
   })
-    
+
   return (
     <Wrapper> 
     <div className="AirportList__list">
@@ -62,7 +57,7 @@ const Home = () => {
         <Pagination
           activePage={activePage}
           itemsCountPerPage={pageShownNum}
-          totalItemsCount={totalNumber - pageShownNum}
+          totalItemsCount={totalNumber(data.airports) - pageShownNum}
           pageRangeDisplayed={pageRangeDisplayed}
           onChange={(activePage)=>setActivePage(activePage)}
         />

@@ -25,7 +25,7 @@ function setup() {
   };
 }
 
-describe('Photos component', () => {
+describe('Loader component', () => {
 
   it('should render self and its subcomponents', () => {
     const {
@@ -34,5 +34,4 @@ describe('Photos component', () => {
 
     expect(shallowWrapper.find(CircularProgress)).toHaveLength(1);
   });
-
 });
