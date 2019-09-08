@@ -26,7 +26,6 @@ function setup() {
 }
 
 describe('Loader component', () => {
-
   it('should render self and its subcomponents', () => {
     const {
       shallowWrapper

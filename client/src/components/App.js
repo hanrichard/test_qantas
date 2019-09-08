@@ -12,7 +12,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
 const Wrapper = styled.div`${componentStyle}`;
-
 const cache = new InMemoryCache();
 const link = new HttpLink({
   uri: 'http://localhost:4000/graphql'
@@ -52,6 +51,5 @@ const App = () => {
     </ApolloProvider>
   )
 };
-
 
 export default App;

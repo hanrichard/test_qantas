@@ -5,7 +5,6 @@ import { shallow, mount, render,  configure } from 'enzyme';
 import Home, { GET_AIRPORTS_QUERY } from './Home';
 import TestRenderer from 'react-test-renderer'; 
 
-
 configure({ adapter: new Adapter() });
 
 const mocks = [
@@ -41,4 +40,3 @@ it('renders without error', () => {
     </MockedProvider>,
   );
 });
-

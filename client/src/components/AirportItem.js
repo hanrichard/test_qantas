@@ -13,11 +13,9 @@ const AirportItem = props => {
       <Card className="AirportList__card" >
         <Link to={`/airport/${props.airport.airportCode}`} className="AirportList__link"> 
           <span>
-            <span className="AirportList__link-airportName">            {props.airport.airportName}
-            </span> 
+            <span className="AirportList__link-airportName">{props.airport.airportName}</span> 
               -       
-            <span className="AirportList__link-countryName">            {props.airport.country.countryName}
-            </span> 
+            <span className="AirportList__link-countryName">{props.airport.country.countryName}</span> 
           </span>
           <ArrowForwardIosIcon />
         </Link>

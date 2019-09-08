@@ -5,7 +5,6 @@ import { shallow, mount, render,  configure } from 'enzyme';
 import AirportDetails, { GET_AIRPORT_QUERY } from './AirportDetails';
 import TestRenderer from 'react-test-renderer'; 
 
-
 configure({ adapter: new Adapter() });
 
 const mocks = [

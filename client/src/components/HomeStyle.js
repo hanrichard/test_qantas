@@ -23,39 +23,39 @@ const componentStyle = css`
       li {
         display: inline;
       }
-    }
 
-    .pagination>li:first-child>a, 
-    .pagination>li:first-child>span {
-      margin-left: 0;
-      border-bottom-left-radius: 4px;
-      border-top-left-radius: 4px;
-    }
-
-    .pagination>li>a, 
-    .pagination>li>span {
-        position: relative;
-        float: left;
-        padding: 6px 12px;
-        line-height: 1.42857143;
-        text-decoration: none;
-        color: #337ab7;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        margin-left: -1px;
-    }
-
-    .pagination>.active>a, 
-    .pagination>.active>a:focus, 
-    .pagination>.active>a:hover, 
-    .pagination>.active>span, 
-    .pagination>.active>span:focus, 
-    .pagination>.active>span:hover {
-      z-index: 3;
-      color: #fff;
-      background-color: #337ab7;
-      border-color: #337ab7;
-      cursor: default;
+      &>li:first-child>a, 
+      &>li:first-child>span {
+        margin-left: 0;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+      }
+  
+      &>li>a, 
+      &>li>span {
+          position: relative;
+          float: left;
+          padding: 6px 12px;
+          line-height: 1.42857143;
+          text-decoration: none;
+          color: #337ab7;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          margin-left: -1px;
+      }
+  
+      &>.active>a, 
+      &>.active>a:focus, 
+      &>.active>a:hover, 
+      &>.active>span, 
+      &>.active>span:focus, 
+      &>.active>span:hover {
+        z-index: 3;
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #337ab7;
+        cursor: default;
+      }
     }
   }
 `
