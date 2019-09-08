@@ -6,13 +6,11 @@ import Container from '@material-ui/core/Container';
 
 const Header = () => {
   return (
-    <Wrapper>
-      <AppBar>
-        <Toolbar>
-          <Container maxWidth="sm"><Typography variant="h6">Airport datas</Typography></Container>
-        </Toolbar>
-      </AppBar>
-    </Wrapper>
+    <AppBar>
+      <Toolbar>
+        <Container maxWidth="sm"><Typography variant="h6">Airport datas</Typography></Container>
+      </Toolbar>
+    </AppBar>
   )
 };
 
