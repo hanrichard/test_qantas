@@ -23,7 +23,7 @@ const mocks = [
 
 it('renders without error', () => {
   TestRenderer.create(
-    <MockedProvider mocks={mocks}>
+    <MockedProvider mocks={mocks} >
       <AirportDetails  />
     </MockedProvider>,
   );
