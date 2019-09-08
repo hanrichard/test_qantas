@@ -33,11 +33,11 @@ const Home = () => {
   if (error) return <div>{error.message}</div>;
 
   const Wrapper = styled.div`${componentStyle}`;
-  const totalNumber = data.airports.length;
-  const pageShownNum = 25
-  const pageRangeDisplayed = 5
-  const currentPages = activePage * pageShownNum
-  const nextPages = currentPages + pageShownNum
+  const totalNumber = data.airports.length,
+        pageShownNum = 25,
+        pageRangeDisplayed = 5,
+        currentPages = activePage * pageShownNum,
+        nextPages = currentPages + pageShownNum
 
   const airportsList = data.airports.slice(currentPages, nextPages).map( airport => {
       return (
