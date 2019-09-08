@@ -24,13 +24,16 @@ function setup() {
   };
 }
 
-describe('Photos component', () => {
+describe('Airport item component', () => {
   it('should render self and its subcomponents', () => {
     const {
       shallowWrapper
     } = setup();
 
     expect(shallowWrapper.find(Card)).toHaveLength(1);
+    expect(shallowWrapper.find(".AirportList__card")).toHaveLength(1);
+    expect(shallowWrapper.find(".AirportList__link")).toHaveLength(1);
+    expect(shallowWrapper.find(".AirportList__link-airportName")).toHaveLength(1);
+    expect(shallowWrapper.find(".AirportList__link-countryName")).toHaveLength(1);
   });
-
 });

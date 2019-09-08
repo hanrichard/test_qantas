@@ -32,7 +32,8 @@ export const GET_AIRPORT_QUERY = gql`
 `;
 
 const AirportDetails = (props) => {
-  const { loading, error, data } = useQuery(
+  const { 
+    loading, error, data } = useQuery(
     GET_AIRPORT_QUERY
   );
 

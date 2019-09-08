@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { ApolloProvider } from 'react-apollo';
 import Home from "./Home"
 import AirportDetails from "./AirportDetails"

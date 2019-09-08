@@ -14,7 +14,7 @@ function setup() {
             countryName: "1234"
         },
         airportCode: "123"
-      }
+    }
   };
 
   const shallowWrapper = shallow(<Loader />);

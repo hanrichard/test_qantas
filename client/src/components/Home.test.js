@@ -2,8 +2,9 @@ import React from "react";
 import { MockedProvider } from '@apollo/react-testing'
 import Adapter from "enzyme-adapter-react-16";
 import { shallow, mount, render,  configure } from 'enzyme';
-import AirportDetails, { GET_AIRPORT_QUERY } from './AirportDetails';
+import Home, { GET_AIRPORTS_QUERY } from './Home';
 import TestRenderer from 'react-test-renderer'; 
+import Loader from "./Loader";
 
 
 configure({ adapter: new Adapter() });
@@ -11,7 +12,7 @@ configure({ adapter: new Adapter() });
 const mocks = [
   {
     request: {
-      query: GET_AIRPORT_QUERY
+      query: GET_AIRPORTS_QUERY
     },
     result: {
       data: {
@@ -37,7 +38,8 @@ const mocks = [
 it('renders without error', () => {
   TestRenderer.create(
     <MockedProvider mocks={mocks} >
-      <AirportDetails  />
+      <Home  />
     </MockedProvider>,
   );
 });
+
