@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount, configure } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 import Loader from './Loader';
 import Adapter from 'enzyme-adapter-react-16';
 import Card from '@material-ui/core/Card';
@@ -29,11 +29,10 @@ describe('Photos component', () => {
 
   it('should render self and its subcomponents', () => {
     const {
-      shallowWrapper,
-      props
+      shallowWrapper
     } = setup();
 
-    expect(shallowWrapper.find(<CircularProgress />)).toHaveLength(1);
+    expect(shallowWrapper.find(CircularProgress)).toHaveLength(1);
   });
 
 });

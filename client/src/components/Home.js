@@ -12,11 +12,18 @@ import PropTypes from 'prop-types';
 export const GET_AIRPORTS_QUERY = gql`
 {
   airports {
-    airportName
-    country {
-        countryName
-    }
     airportCode
+    airportName
+    location {
+      latitude
+      longitude
+    }
+    city {
+      timeZoneName
+    }
+    country {
+      countryName
+    }
   }
 }
 `;

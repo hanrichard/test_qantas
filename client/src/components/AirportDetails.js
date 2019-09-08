@@ -24,6 +24,9 @@ export const GET_AIRPORT_QUERY = gql`
     city {
       timeZoneName
     }
+    country {
+      countryName
+    }
   }
 }
 `;

@@ -25,14 +25,12 @@ function setup() {
 }
 
 describe('Photos component', () => {
-
   it('should render self and its subcomponents', () => {
     const {
-      shallowWrapper,
-      props
+      shallowWrapper
     } = setup();
 
-    expect(shallowWrapper.find(<Card />)).toHaveLength(1);
+    expect(shallowWrapper.find(Card)).toHaveLength(1);
   });
 
 });

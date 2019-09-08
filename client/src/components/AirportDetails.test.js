@@ -1,42 +1,33 @@
-import React from 'react';
-import AirportDetails from './AirportDetails';
-import Adapter from 'enzyme-adapter-react-16';
-import Card from '@material-ui/core/Card';
-import { shallow, mount, render,configure } from 'enzyme';
+import React from "react";
+import { MockedProvider } from '@apollo/react-testing'
+import Adapter from "enzyme-adapter-react-16";
+import { shallow, mount, render,  configure } from 'enzyme';
+import { GET_AIRPORT_QUERY, AirportDetails } from './AirportDetails';
+import TestRenderer from 'react-test-renderer'; 
+
 
 configure({ adapter: new Adapter() });
 
-function setup() {
-  const props = {
-    airport: {
-        airportCode: "23",
-        airportName: "34",
-        location: {
-          latitude: "34",
-          longitude: "34"
-        },
-        city: {
-          timeZoneName: "34"
-        }
-      
-    }
-  };
+const mocks = [
+  {
+    request: {
+      query: GET_AIRPORT_QUERY
+    },
+    result: {
+      data: {
+        dog: { id: '1', name: 'Buck', breed: 'bulldog' },
+      },
+    },
+  },
+];
 
-  const shallowWrapper = shallow(<AirportDetails {...props} />);
-  return {
-    props,
-    shallowWrapper
-  };
-}
+it('should render loading state initially', () => {
+  const component = TestRenderer.create(
+    <MockedProvider mocks={[]}>
+      <AirportDetails />
+    </MockedProvider>,
+  );
 
-
-describe('AirportDetails component', () => {
-  it('should render self and its subcomponents', () => {
-    const {
-      shallowWrapper,
-    } = setup();
-
-    expect(shallowWrapper.find(<Card />)).toHaveLength(1);
-  });
-
+  const tree = component.toJSON();
+  expect(tree.children).toContain('Loading...');
 });
