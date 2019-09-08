@@ -16,6 +16,8 @@ GraphQL, react, scss
 ## HOW-TO run: 
 ### to start a server
 Go to server folder, you can run:
+#### `npm install`
+To install all needed node modules
 #### `npm start`
 Runs the server<br>
 Open [http://localhost:4000/graphql](http://localhost:4000/graphql) to view it in the browser, 
@@ -24,6 +26,8 @@ and run your query or mutation
 
 ### to start the page
 Go to client folder, and run: 
+#### `npm install`
+To install all needed node modules
 #### `npm start`
 Runs the app<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
