@@ -40,15 +40,15 @@ const Home = () => {
   if (error) return <div>{error.message}</div>;
 
   const totalNumber = data.airports.length,
-        pageShownNum = 25,
-        pageRangeDisplayed = 5,
-        currentPages = activePage * pageShownNum,
-        nextPages = currentPages + pageShownNum
+    pageShownNum = 25,
+    pageRangeDisplayed = 5,
+    currentPages = activePage * pageShownNum,
+    nextPages = currentPages + pageShownNum
 
   const airportsList = data.airports.slice(currentPages, nextPages).map( airport => {
-      return (
-        <AirportItem key={airport.airportCode} airport={airport}/>
-      )
+    return (
+      <AirportItem key={airport.airportCode} airport={airport}/>
+    )
   })
     
   return (
@@ -78,7 +78,7 @@ Home.propTypes = {
       airportCode: PropTypes.string,
       country: PropTypes.shape({
         countryName: PropTypes.string,
-      })
+    })
   })
 };
 
