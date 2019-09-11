@@ -254,3 +254,113 @@ describe('FieldWrapper', () => {
 	});
 });
 
+
+import { mount, shallow } from 'enzyme';
+import AEMContent from '../AEMContent/AEMContent';
+import TestRenderer from 'react-test-renderer';
+import React from 'react';
+
+describe('AEMContent', () => {
+	beforeEach(() => {
+		fetch.resetMocks();
+	});
+
+	it('should pass the redirectTo404OnError props', () => {
+		const responseContent = '<p id="aem-content-id">yay</p>';
+		fetch.mockResponse(responseContent);
+		const tree = mount(<AEMContent redirectTo404OnError path="" />);
+		expect(tree.props()['redirectTo404OnError']).toBe(true);
+	});
+
+	it('should pass the loadingMessage prop', () => {
+		const responseContent = '<p id="aem-content-id">yay</p>';
+		fetch.mockResponse(responseContent);
+		const tree = TestRenderer.create(
+			<AEMContent
+				isLoading
+				loadingMessage={() => <div>loading...</div>}
+				path=""
+			/>
+		).toJSON();
+		expect(tree).toMatchSnapshot();
+	});
+
+	it('should render a vanilla div if noStyle is passed', async () => {
+		const responseContent = 'content';
+		fetch.mockResponse(responseContent);
+		const wrapper = shallow(<AEMContent path="" noStyle />);
+		await wrapper.instance().componentDidMount();
+		// eslint-disable-next-line
+		expect(wrapper.html()).toBe('<div>content</div>');
+	});
+
+	it('should not redirect to 404 page', async () => {
+		const responseContent = '<p id="aem-content-id">yay</p>';
+		fetch.mockResponse(responseContent);
+		Object.defineProperty(window.location, 'replace', {});
+		window.location.replace = jest.fn();
+		const wrapper = shallow(<AEMContent path="" redirectTo404OnError />);
+		await wrapper.instance().componentDidMount();
+		expect(window.location.replace).not.toHaveBeenCalled();
+	});
+
+	it('should render content asynchronously', async () => {
+		const responseContent = '<p id="aem-content-id">yay</p>';
+		fetch.mockResponse(responseContent);
+		const errorHandlerSpy = jest.fn();
+		const wrapper = shallow(<AEMContent path="" onError={errorHandlerSpy} />);
+		await wrapper.instance().componentDidMount();
+		wrapper.update();
+		expect(wrapper.html()).toContain(responseContent);
+	});
+
+	describe('handles error events', () => {
+		it('should call onError callback', async () => {
+			fetch.mockReject(new Error('fake error message'));
+
+			const errorHandlerSpy = jest.fn();
+			const wrapper = shallow(<AEMContent path="" onError={errorHandlerSpy} />);
+			await wrapper.instance().componentDidMount();
+			expect(errorHandlerSpy).toHaveBeenCalled();
+		});
+		it('should not render anything', async () => {
+			fetch.mockReject(new Error('fake error message'));
+			const wrapper = shallow(<AEMContent path="" />);
+			await wrapper.instance().componentDidMount();
+			expect(wrapper.html()).toMatchSnapshot();
+		});
+		it('should renders a errorMessage prop text when given', async () => {
+			fetch.mockReject(new Error('fake error message'));
+			const wrapper = shallow(
+				<AEMContent path="" errorMessage="Error retrieving content" />
+			);
+			await wrapper.instance().componentDidMount();
+			expect(wrapper.html()).toContain('Error retrieving content');
+		});
+		it('should prioritize the errorMessage over the loadingMessage', async () => {
+			fetch.mockReject(new Error('fake error message'));
+			const wrapper = shallow(
+				<AEMContent
+					isLoading
+					errorMessage="<div>error!!!</div>"
+					loadingMessage="<div>loading...</div>"
+					path=""
+				/>
+			);
+			await wrapper.instance().componentDidMount();
+			expect(wrapper.html()).toMatchSnapshot();
+		});
+
+		describe('handles redirectTo404OnError', () => {
+			it('should redirect on error', async () => {
+				Object.defineProperty(window.location, 'replace', {});
+				window.location.replace = jest.fn();
+				fetch.mockReject(new Error('fake error message'));
+				const wrapper = shallow(<AEMContent path="" redirectTo404OnError />);
+				await wrapper.instance().componentDidMount();
+				expect(window.location.replace).toHaveBeenCalled();
+			});
+		});
+	});
+});
+
