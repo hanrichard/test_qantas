@@ -392,3 +392,6 @@ describe('Accordion', () => {
 		expect(wrapper.exists('[data-test]')).toEqual(true);
 	});
 });
+
+
+https://www.smashingmagazine.com/2018/02/comprehensive-website-planning-guide-part1/
