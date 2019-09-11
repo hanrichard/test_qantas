@@ -364,3 +364,31 @@ describe('AEMContent', () => {
 	});
 });
 
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Accordion from './Accordion';
+import { mount } from 'enzyme';
+
+jest.mock('shortid', () => {
+	return {
+		generate: jest.fn(() => 'randomid'),
+	};
+});
+
+const props = {
+	title: 'title',
+	subTitle: 'subtitle',
+	el: 'h3',
+};
+
+describe('Accordion', () => {
+	it('renders', () => {
+		const tree = renderer.create(<Accordion {...props} />).toJSON();
+		expect(tree).toMatchSnapshot();
+	});
+
+	it('passes through unnamed props', () => {
+		const wrapper = mount(<Accordion {...props} data-test="test" />);
+		expect(wrapper.exists('[data-test]')).toEqual(true);
+	});
+});
